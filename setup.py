@@ -8,9 +8,9 @@ with open("README.md", "r", encoding='utf-8') as fh:
     long_description = fh.read()
 
 setup(
-    name="mytools_wjs",
-    version="0.0.2",
-    author="WuJiaShuo",
+    name=mytools_wjs.__name__,
+    version=mytools_wjs.__version__,
+    author=mytools_wjs.__author__,
     author_email="55340808@qq.com",
     description="mytoos",
     long_description=long_description,
