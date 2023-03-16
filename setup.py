@@ -9,7 +9,7 @@ with open("README.md", "r", encoding='utf-8') as fh:
 
 setup(
     name="mytools_wjs",
-    version="0.0.1",
+    version="0.0.2",
     author="WuJiaShuo",
     author_email="55340808@qq.com",
     description="mytoos",
