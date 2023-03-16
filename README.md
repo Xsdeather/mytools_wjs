@@ -7,7 +7,9 @@
 
 
 ```python
-"""
+"""   
+https://blog.csdn.net/MemoryD/article/details/84295855
+
 可以参考怎么样发布你的 Python 代码给别人 “pip install”来发布自己的pypi包。如果需要更新包的话，可以通过以下几个步骤完成。
 
 第一步：更新代码
