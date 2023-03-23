@@ -4,7 +4,7 @@
 ################################################################################
 ### expansion() and expansion_up() function
 ################################################################################
-__all__ = ["expansion", "expansion_up"]
+__all__ = ["expansion", "expansion_up", "mapping_yq", "mapping_NumberToChinese"]
 
 
 
