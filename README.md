@@ -1,7 +1,8 @@
 ## 扁平化列表方法
 > ① expansion : 递归方法实现多维列表扁平化
 > ② expansion_up : 生成器方法实现多维列表扁平化
-
+> ③ mapping_yq: 任意长度映射 例 1->① 123->①②③
+> ④ mapping_NumberToChinese: 数字转大写和数字转大写钱数
 
 
 
