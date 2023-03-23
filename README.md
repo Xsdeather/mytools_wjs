@@ -30,8 +30,9 @@ twine upload dist/*
 第五步：使用以下指令更新python中的包体
 
 pip install --upgrade certimaker
-————————————————
-版权声明：本文为CSDN博主「梧桐雪」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
-原文链接：https://blog.csdn.net/weixin_41855010/article/details/105506343
+
+## python setup.py sdist upload -r pypi
+
+
 """
 ```
