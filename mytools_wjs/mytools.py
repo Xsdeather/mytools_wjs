@@ -4,8 +4,7 @@
 ################################################################################
 ### expansion() and expansion_up() function
 ################################################################################
-__all__ = ["expansion", "expansion_up", "mapping_yq", "mapping_NumberToChinese"]
-
+__all__ = ["expansion", "expansion_up", "mapping_yq", "mapping_NumberToChinese", "secondsT0format", "timestampTotime"]
 
 
 def expansion_up(array: list or tuple) -> list:
@@ -214,7 +213,7 @@ def mapping_NumberToChinese(number: int or float, mode: str = 'J', length: int =
         if length == 0:
             return result + '元整'
         tail = str(str(number_M).split('.')[1])[0: length]
-        for _ in range(length-len(tail)):
+        for _ in range(length - len(tail)):
             tail += '0'
         if length == 1:
             if tail == '0':
@@ -249,3 +248,77 @@ def mapping_NumberToChinese(number: int or float, mode: str = 'J', length: int =
                 return result + '元' + mapping_J[tail[0]] + '角' + mapping_J[tail[1]] + '分' + mapping_J[tail[2]] + '厘'
 
     return result
+
+
+def secondsT0format(seconds: int, mode: str = 'H', beautify: bool = True) -> str:
+    """
+    秒转时间
+    @param beautify: 是否美化， 默认True, demo: 3600秒 -> 1小时
+    @param mode: H -> 中文格式输出 S -> 英文格式输出
+    @param seconds: 传入需要格式化的时间（单位：秒） int 型
+    """
+
+    def function1(num: int, dividend: int = 60):
+        """
+        ---
+        @param dividend: ---
+        @param num: ---
+        """
+        return int(num / dividend), num % dividend
+
+    if mode == 'S':
+        mapping = ['d', 'h:', 'm:', 's', '', '']
+        beautify = False
+    else:
+        mapping = ['天', '时', '分', '秒', '小时', '分钟']
+
+    if seconds > 60:
+        minutes, sec = function1(seconds)
+        if minutes >= 60:
+            if minutes == 60 and sec == 0 and beautify:
+                return f'1{mapping[4]}'
+            else:
+                hour, minutes = function1(minutes)
+                if hour > 24:
+                    day, hour = function1(hour, 24)
+                    return f'{day}{mapping[0]}/{hour}{mapping[1]}{minutes}{mapping[2]}{sec}{mapping[3]}'
+                else:
+                    if hour == 24 and minutes == 0 and sec == 0 and beautify:
+                        return f'24{mapping[4]}'
+                    else:
+                        return f'{hour}{mapping[1]}{minutes}{mapping[2]}{sec}{mapping[3]}'
+        else:
+            return f'{minutes}{mapping[2]}{sec}{mapping[3]}'
+    else:
+        if seconds == 60 and beautify:
+            return f'1{mapping[5]}'
+        else:
+            return f'{seconds}{mapping[3]}'
+
+
+def timestampTotime(stamp: int, mode: str = '%Y-%m-%d %H:%M:%S', strict: bool = True) -> str:
+    """
+    时间戳转时间
+    :param strict: 严格模式： True严格, False 通配, 主要控制 stamp 传入的格式和位数, 如果为通配模式，当传入的参数格式和位数不为10位int型时会自动处理
+    :param stamp: 传入需要转换的时间戳
+    :param mode: 输出的时间格式
+    :return: 成功返回格式化后的时间，出现错误返回error
+    """
+    if strict:
+        if len(str(stamp)) != 10:
+            print('stamp 必须为10位int型！')
+            return 'error'
+    else:
+        if len(str(stamp)) > 10:
+            stamp = int(str(stamp)[0: 10])
+        elif len(str(stamp)) < 10:
+            stamp = str(stamp)
+            for _ in range(10-len(stamp)):
+                stamp += '0'
+            stamp = int(stamp)
+    try:
+        otherStyleTime = time.strftime(mode, time.localtime(stamp))
+    except Exception as e:
+        print("可能mode 参数格式错误！" + str(e.args))
+        return "error"
+    return otherStyleTime

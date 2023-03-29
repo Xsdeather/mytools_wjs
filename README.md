@@ -1,8 +1,10 @@
 ## 扁平化列表方法
-> ① expansion : 递归方法实现多维列表扁平化
-> ② expansion_up : 生成器方法实现多维列表扁平化
-> ③ mapping_yq: 任意长度映射 例 1->① 123->①②③
-> ④ mapping_NumberToChinese: 数字转大写和数字转大写钱数
+>  expansion : 递归方法实现多维列表扁平化
+>  expansion_up : 生成器方法实现多维列表扁平化
+>  mapping_yq: 任意长度映射 例 1->① 123->①②③
+>  mapping_NumberToChinese: 数字转大写和数字转大写钱数
+>  secondsT0format: 秒数格式化为时间
+>  timestampTotime: 时间戳格式化为时间
 
 
 
