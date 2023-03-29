@@ -6,6 +6,8 @@
 ################################################################################
 __all__ = ["expansion", "expansion_up", "mapping_yq", "mapping_NumberToChinese", "secondsT0format", "timestampTotime"]
 
+import time
+
 
 def expansion_up(array: list or tuple) -> list:
     """
@@ -322,3 +324,4 @@ def timestampTotime(stamp: int, mode: str = '%Y-%m-%d %H:%M:%S', strict: bool = 
         print("可能mode 参数格式错误！" + str(e.args))
         return "error"
     return otherStyleTime
+
